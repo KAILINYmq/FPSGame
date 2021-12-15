@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26f2959bcc5a4b445a0d688d3827d378, type: 3}
+  m_Name: Footstep Audio Data
+  m_EditorClassIdentifier: 
+  FootstepAudios:
+  - Tag: Aiming
+    AudioClips:
+    - {fileID: 8300000, guid: acaebc89b98b82142bd2b24edb6081e4, type: 3}
+    Delay: 0
+  - Tag: Casings_&_Shells
+    AudioClips:
+    - {fileID: 8300000, guid: 39a52c8570aa5ee4b8c76570a3eda151, type: 3}
+    - {fileID: 8300000, guid: a422bb42207b84543bfa921cf5ad09d2, type: 3}
+    - {fileID: 8300000, guid: 031057f31153d6e4da071a851d29e9e2, type: 3}
+    - {fileID: 8300000, guid: 13f0d2cf3fe7b1744ada35cb7c1e1a4b, type: 3}
+    - {fileID: 8300000, guid: 3f8b82312021c504f8a6212dddba71f3, type: 3}
+    Delay: 0
+  - Tag: Explosions
+    AudioClips:
+    - {fileID: 8300000, guid: dd0264e11df5d694fbe924abc3e80301, type: 3}
+    - {fileID: 8300000, guid: ca80aad89fdc47a4b91e62a663ebd1f0, type: 3}
+    - {fileID: 8300000, guid: 0579dc5d712b04b4291909f2dd3fd64e, type: 3}
+    - {fileID: 8300000, guid: 2cc6c6aebec9fd343aab9a4451b7e5e8, type: 3}
+    - {fileID: 8300000, guid: f51e493a8b9df094b868413e03a7d0e1, type: 3}
+    - {fileID: 8300000, guid: 37a8c4b99174fa742938356c88331c14, type: 3}
+    Delay: 0
+  - Tag: Grenade_Throw
+    AudioClips:
+    - {fileID: 8300000, guid: fbb85ac510521f645bc786f2af29801f, type: 3}
+    - {fileID: 8300000, guid: a640cc6972f037f4ca8f590635bb4f2a, type: 3}
+    Delay: 0
+  - Tag: Gun_Reloads
+    AudioClips:
+    - {fileID: 8300000, guid: f7ce534a0633b9847910ba117e2245d1, type: 3}
+    - {fileID: 8300000, guid: 5b907074256e36d41b92e89fb0790633, type: 3}
+    Delay: 0
+  - Tag: Impacts
+    AudioClips:
+    - {fileID: 8300000, guid: fceb333e433c97e4497267e3c3a508c3, type: 3}
+    - {fileID: 8300000, guid: f49b461f95e0def45b1ad2a5a350e574, type: 3}
+    - {fileID: 8300000, guid: 091908a06d0b56143aaf6d3913444ab7, type: 3}
+    - {fileID: 8300000, guid: fd208dd7a0eafc84f82ad5fde72ab8fc, type: 3}
+    - {fileID: 8300000, guid: 89b4957f2e6ee4740adfdccd422b9262, type: 3}
+    Delay: 0
+  - Tag: Misc
+    AudioClips:
+    - {fileID: 8300000, guid: 33a4a9bf1a1dbca4cb379a1118c6b20d, type: 3}
+    - {fileID: 8300000, guid: 2ae41e984ff1f3e4a840a1a46b6a8816, type: 3}
+    - {fileID: 8300000, guid: 0a3d74157d2f1714894e1358632773c8, type: 3}
+    - {fileID: 8300000, guid: 83ed69ca21a297b4ab15a1e89abd4e4b, type: 3}
+    Delay: 0
+  - Tag: Movement
+    AudioClips:
+    - {fileID: 8300000, guid: 0c58744c3b6fdd844b8348066c3f703e, type: 3}
+    - {fileID: 8300000, guid: 6597a368cd74a924eaedb0171d5b28d3, type: 3}
+    Delay: 0.4
+  - Tag: Shoot
+    AudioClips:
+    - {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
+    Delay: 0
