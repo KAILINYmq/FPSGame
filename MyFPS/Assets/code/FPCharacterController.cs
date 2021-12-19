@@ -18,11 +18,10 @@ public class FPCharacterController : MonoBehaviour
     public float Jump;
     public float gravity = 9.8f;
     public float CrouchHeight = 1f;
-    
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        characterAnimator = GetComponentInChildren<Animator>();
+        // characterAnimator = GetComponentInChildren<Animator>();
         originHeight = characterController.height;
     }
 
@@ -57,8 +56,8 @@ public class FPCharacterController : MonoBehaviour
             // 调整动画状态
             var tmp_velocity = characterController.velocity;
             tmp_velocity.y = 0;
-            characterAnimator.SetFloat("Velocity",tmp_velocity.magnitude, 
-                0.25f, Time.deltaTime);
+            if (characterAnimator != null) characterAnimator.SetFloat("Velocity",
+                tmp_velocity.magnitude, 0.25f, Time.deltaTime);
             
             // Debug.Log(characterAnimator.velocity);
         }
@@ -76,5 +75,10 @@ public class FPCharacterController : MonoBehaviour
             characterController.height = Mathf.SmoothDamp(characterController.height, _target,
                 ref tmp_CurrentHeight, Time.deltaTime*5);
         }
+    }
+
+    internal void SetupAnimator(Animator _animator)
+    {
+        characterAnimator = _animator;
     }
 }

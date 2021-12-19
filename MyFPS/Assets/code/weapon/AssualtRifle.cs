@@ -9,9 +9,9 @@ namespace Scripts.Weapen
         private IEnumerator reloadAmmoCheckerCoroutine;
         private FPMouselook Mouselook;
         
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             reloadAmmoCheckerCoroutine = CheckReloadAmmoAnimationEnd();
             Mouselook = FindObjectOfType<FPMouselook>();
         }

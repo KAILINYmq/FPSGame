@@ -22,17 +22,20 @@ namespace Scripts.Weapen
         public AudioSource FireamsReloadAudioSource;
         public FirearmsAudioData FirearmsAudioData;
         
+        public int GetCurrentAmmo => CurrentAmmo;
+        public int GetCurrentMaxAmmoCarried => CurrentMaxAmmoCarried;
+        
+        internal Animator GunAnimator;
         protected int CurrentAmmo;
         protected int CurrentMaxAmmoCarried;
         protected float LastFireTime;
-        protected Animator GunAnimator;
         protected AnimatorStateInfo GunStateInfo;
         protected float OriginFOV;
         protected bool isAiming;
         protected bool IsHoldingTrigger;
         private IEnumerator doAimCoroutine;
         
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             CurrentAmmo = AmmoInMag;
             CurrentMaxAmmoCarried = MaxAmmoCarried;
