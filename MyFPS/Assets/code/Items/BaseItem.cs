@@ -9,6 +9,7 @@ namespace Scripts.Items
         public enum ItemType 
         {
             Firearms,
+            Attachment,
             Grenade,
             knife, 
             Others
@@ -16,5 +17,6 @@ namespace Scripts.Items
 
         public ItemType CurrentItemType;
         public int ItemId;
+        public string ItemName;
     }
 }

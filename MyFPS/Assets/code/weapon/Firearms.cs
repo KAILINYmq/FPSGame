@@ -1,12 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Scripts.Weapen
 {
     public abstract class Firearms:MonoBehaviour,IWeapon
     {   
+        public GameObject BulletImpactPrefab;
         public GameObject BulletPrefab;
         public Camera EyeCamera;
+        public Camera GunCamera;
         public float SpreadAngle;
         
         public Transform Muzzlepoint;
@@ -17,11 +21,16 @@ namespace Scripts.Weapen
         public float FireRate;
         public int AmmoInMag = 30;
         public int MaxAmmoCarried = 120;
-
+        
         public AudioSource FireamShootingAudioSource;
         public AudioSource FireamsReloadAudioSource;
         public FirearmsAudioData FirearmsAudioData;
+        public ImpactAudioData ImpactAudioData;
         
+        public List<ScopeInfo> ScopeInfos;
+        public ScopeInfo BaseIronSight;
+        protected ScopeInfo rigoutScopeInfo; 
+
         public int GetCurrentAmmo => CurrentAmmo;
         public int GetCurrentMaxAmmoCarried => CurrentMaxAmmoCarried;
         
@@ -34,6 +43,10 @@ namespace Scripts.Weapen
         protected bool isAiming;
         protected bool IsHoldingTrigger;
         private IEnumerator doAimCoroutine;
+        protected float EyeOriginFOV;
+        protected float GunOriginFOV;
+        protected Vector3 originalEyePosition;
+        protected Transform gunCameraTransform;
         
         protected virtual void Awake()
         {
@@ -42,6 +55,11 @@ namespace Scripts.Weapen
             GunAnimator = GetComponent<Animator>();
             OriginFOV = EyeCamera.fieldOfView;
             doAimCoroutine = DoAim();
+            EyeOriginFOV = EyeCamera.fieldOfView;
+            GunOriginFOV = GunCamera.fieldOfView;
+            gunCameraTransform = GunCamera.transform;
+            originalEyePosition = gunCameraTransform.localPosition;
+            rigoutScopeInfo = BaseIronSight;
         }
 
         public void DoAttack()
@@ -99,8 +117,19 @@ namespace Scripts.Weapen
                 
                 float tmp_CurrentFOV = 0;
                 EyeCamera.fieldOfView = 
-                    Mathf.SmoothDamp(EyeCamera.fieldOfView, isAiming?20:OriginFOV, 
+                    Mathf.SmoothDamp(EyeCamera.fieldOfView, 
+                        isAiming?rigoutScopeInfo.GunFov:EyeOriginFOV, 
                         ref tmp_CurrentFOV, Time.deltaTime*2);
+
+                float tmp_GunCurrentFOV = 0;
+                GunCamera.fieldOfView = Mathf.SmoothDamp(GunCamera.fieldOfView,
+                    isAiming?rigoutScopeInfo.GunFov:GunOriginFOV,
+                    ref tmp_CurrentFOV, Time.deltaTime*2);
+
+                Vector3 tmp_RefPosition = Vector3.zero;
+                gunCameraTransform.localPosition = Vector3.SmoothDamp(gunCameraTransform.localPosition,
+                    isAiming ? rigoutScopeInfo.EyePosition : originalEyePosition,
+                    ref tmp_RefPosition, Time.deltaTime*2);
             }
         }
         
@@ -121,6 +150,11 @@ namespace Scripts.Weapen
             }
         }
 
+        internal void SetupCarriedScope(ScopeInfo _scopeInfo)
+        {
+            rigoutScopeInfo = _scopeInfo;
+        }
+
         internal void HoldTrigger()
         {
             DoAttack();
@@ -136,5 +170,15 @@ namespace Scripts.Weapen
         {
             Reload();
         }
+    }
+
+    [System.Serializable]
+    public class ScopeInfo
+    {
+        public string ScopeName;
+        public GameObject ScopeGameObject;
+        public float EyeFov;
+        public float GunFov;
+        public Vector3 EyePosition;
     }
 }

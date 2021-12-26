@@ -87,11 +87,13 @@ namespace Scripts.Weapen
         {
             GameObject tmp_Bullet = Instantiate(BulletPrefab, 
                 Muzzlepoint.position, Muzzlepoint.rotation);
-
-            tmp_Bullet.transform.eulerAngles += CalculateSpreadOffset();
+            /*tmp_Bullet.transform.eulerAngles += CalculateSpreadOffset();
             
             var tmp_BulletRigidbody = tmp_Bullet.AddComponent<Rigidbody>();
-            tmp_BulletRigidbody.velocity = tmp_Bullet.transform.forward * 200f;
+            tmp_BulletRigidbody.velocity = tmp_Bullet.transform.forward * 200f;*/
+            tmp_Bullet.AddComponent<Bullet>().BulletSpeed = 100;
+            tmp_Bullet.AddComponent<Bullet>().ImpactPrefab = BulletImpactPrefab;
+            tmp_Bullet.AddComponent<Bullet>().ImpactAudioData = ImpactAudioData;
         }
     }
 }

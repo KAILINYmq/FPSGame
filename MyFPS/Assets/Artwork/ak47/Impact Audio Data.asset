@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89151f34e98994a4d86446b5bd0a2ee8, type: 3}
+  m_Name: Impact Audio Data
+  m_EditorClassIdentifier: 
+  ImpactAudioDatas:
+  - Tag: Movement
+    ImpactAudioClips:
+    - {fileID: 8300000, guid: 89b4957f2e6ee4740adfdccd422b9262, type: 3}
+  - Tag: tie
+    ImpactAudioClips:
+    - {fileID: 8300000, guid: a640cc6972f037f4ca8f590635bb4f2a, type: 3}
+    - {fileID: 8300000, guid: fbb85ac510521f645bc786f2af29801f, type: 3}

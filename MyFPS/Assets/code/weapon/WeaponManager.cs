@@ -84,31 +84,64 @@ public class WeaponManager : MonoBehaviour
          RaycastmaxDistance, CheckItemlayermask) && 
           Input.GetKeyDown(KeyCode.E))
       {
-         Debug.Log(tmp_RaycastHit.collider.name);
          if (tmp_RaycastHit.collider.TryGetComponent(out BaseItem tmp_BaseItem))
          {
-            if (tmp_BaseItem is FirearmsItem tmp_FirearmsItem)
+            Debug.Log(tmp_RaycastHit.collider.name);
+            PickupWeapon(tmp_BaseItem);
+            // todo 倍镜bug
+            PickupAttachment(tmp_BaseItem);
+         }
+      }
+   }
+
+   private void PickupWeapon(BaseItem tmp_BaseItem)
+   {
+      if (tmp_BaseItem is FirearmsItem tmp_FirearmsItem)
+      {
+         foreach (Firearms tmp_Arm in Arms)
+         {
+            if (tmp_FirearmsItem.ArmsName.CompareTo(tmp_Arm.name) == 0)
             {
-               foreach (Firearms tmp_Arm in Arms)
+               switch (tmp_FirearmsItem.CurremtFirearmsType)
                {
-                  if (tmp_FirearmsItem.ArmsName.CompareTo(tmp_Arm.name) == 0)
-                  {
-                     switch (tmp_FirearmsItem.CurremtFirearmsType)
-                     {
-                        case FirearmsItem.FirearmsType.AssultRefile:
-                           MainWeapon = tmp_Arm;
-                           break;
-                        case FirearmsItem.FirearmsType.HandGun:
-                           ScendaryWeapon = tmp_Arm;
-                           break;
-                        default:
-                           throw new ArgumentOutOfRangeException();
-                     }
-                     SetupCarriedWeapon(tmp_Arm);
-                  }
+                  case FirearmsItem.FirearmsType.AssultRefile:
+                     MainWeapon = tmp_Arm;
+                     break;
+                  case FirearmsItem.FirearmsType.HandGun:
+                     ScendaryWeapon = tmp_Arm;
+                     break;
+                  default:
+                     throw new ArgumentOutOfRangeException();
                }
+               SetupCarriedWeapon(tmp_Arm);
             }
          }
+      } 
+   }
+
+   private void PickupAttachment(BaseItem tmp_BaseItem)
+   {  
+      if (!(tmp_BaseItem is AttachmentItem tmp_AttachmentItem)) return;
+      Debug.Log(tmp_BaseItem);
+      switch (tmp_AttachmentItem.CurrentAttachmentType)
+      {
+         case AttachmentItem.AttachmentType.Scope:
+            foreach (ScopeInfo tmp_ScopeInfo in carriedWeapon.ScopeInfos)
+            {
+               if (tmp_ScopeInfo.ScopeName.CompareTo(tmp_AttachmentItem.ItemName) != 0)
+               {
+                  tmp_ScopeInfo.ScopeGameObject.SetActive(false);
+                  continue;
+               }
+               tmp_ScopeInfo.ScopeGameObject.SetActive(true);
+               carriedWeapon.BaseIronSight.ScopeGameObject.SetActive(false);
+               carriedWeapon.SetupCarriedScope(tmp_ScopeInfo);
+            }
+            break;
+         case AttachmentItem.AttachmentType.Other:
+            break;
+         default:
+            throw new ArgumentOutOfRangeException();
       }
    }
 

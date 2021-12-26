@@ -56,8 +56,11 @@
      <Compile Include="Assets\code\CameraSpring.cs" />
      <Compile Include="Assets\code\weapon\IWeapon.cs" />
      <Compile Include="Assets\code\CameraSpingUtility.cs" />
+     <Compile Include="Assets\code\Items\FirearmsItem.cs" />
+     <Compile Include="Assets\code\Items\AttachmentItem.cs" />
      <Compile Include="Assets\code\FPCharacterController.cs" />
      <Compile Include="Assets\code\FPMouselook.cs" />
+     <Compile Include="Assets\code\Items\BaseItem.cs" />
      <Compile Include="Assets\code\weapon\WeaponManager.cs" />
      <Compile Include="Assets\code\weapon\FirearmsAudioData.cs" />
      <Compile Include="Assets\code\PlayerFootstepListener.cs" />
@@ -65,8 +68,8 @@
      <Compile Include="Assets\code\weapon\Firearms.cs" />
      <Compile Include="Assets\code\UI\CroshairUI.cs" />
      <Compile Include="Assets\code\FPMovement.cs" />
-     <Compile Include="Assets\code\Items\baseItem.cs" />
-     <Compile Include="Assets\code\Items\FirearmsItem.cs" />
+     <Compile Include="Assets\code\weapon\Bullet.cs" />
+     <Compile Include="Assets\code\weapon\ImpactAudioData.cs" />
      <None Include="Assets\shader\cao.shader" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.23f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -58,8 +58,6 @@ public class FPCharacterController : MonoBehaviour
             tmp_velocity.y = 0;
             if (characterAnimator != null) characterAnimator.SetFloat("Velocity",
                 tmp_velocity.magnitude, 0.25f, Time.deltaTime);
-            
-            // Debug.Log(characterAnimator.velocity);
         }
 
         tmp_MovementDirection.y -= gravity * Time.deltaTime;
